@@ -1,6 +1,6 @@
 package day02_webelemets_locators;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ public class C06_AutomationExercise {
     public static void main(String[] args) {
 
         //1- Bir test class’i olusturun ilgili ayarlari yapin
-        WebDriverManager.chromedriver().setup();
+
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
