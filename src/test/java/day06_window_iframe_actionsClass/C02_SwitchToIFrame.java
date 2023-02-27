@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
 public class C02_SwitchToIFrame extends TestBase {
@@ -43,6 +44,7 @@ public class C02_SwitchToIFrame extends TestBase {
         Assert.assertTrue(yaziElementi.isDisplayed());
 
         // Elemental Selenium linkine click yapin
+
         /*
             Bir frame'e gecis yaptiktan sonra
             oradan cikincaya veya baska bir frame'e gecinceye kadar

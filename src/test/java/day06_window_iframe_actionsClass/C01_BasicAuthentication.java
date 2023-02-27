@@ -9,13 +9,14 @@ public class C01_BasicAuthentication extends TestBase {
 
     @Test
     public void test01() {
+
         //2- https://the-internet.herokuapp.com/basic_auth sayfasina gidin
         //3- asagidaki yontem ve test datalarini kullanarak authentication’i yapin
-        //
+
         //  Html komutu : https://username:password@URL
         //	Username     : admin
         // 	password      : admin
-        //
+
         driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
 
         //4- Basarili sekilde sayfaya girildigini dogrulayin
@@ -23,6 +24,7 @@ public class C01_BasicAuthentication extends TestBase {
         String expectedIcerik = "Congratulations";
 
         Assert.assertTrue(actualGirisYazisi.contains(expectedIcerik));
+        bekle(3);
 
     }
 }

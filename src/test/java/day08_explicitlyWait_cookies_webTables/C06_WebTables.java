@@ -14,48 +14,62 @@ public class C06_WebTables extends TestBase {
     public void test01(){
         //1. “https://demoqa.com/webtables” sayfasina gidin
         driver.get("https://demoqa.com/webtables");
+
         // 2. Headers da bulunan basliklari yazdirin
-        List<WebElement> baslikElementi=driver.findElements(By.xpath("//div[@class='rt-tr']"));
-        int siraNo=1;
-        for (WebElement each:baslikElementi) {
-            System.out.println(siraNo+"-->"+each.getText());
-            siraNo++;
+        List<WebElement> headersList = driver.findElements(By.className("rt-resizable-header-content"));
+        int index=1;
+        for (WebElement each:headersList) {
+            System.out.println(index+" - "+each.getText());
+            index++;
         }
+
         // 3. 3.sutunun basligini yazdirin
-        WebElement ucuncuSutunBasligi= driver.findElement(By.xpath("(//div[@class='rt-resizable-header-content'])[3]"));
-        System.out.println("Üçüncü sütun başlığı : "+ucuncuSutunBasligi.getText());
+
         // 4. Tablodaki tum datalari yazdirin
-        List<WebElement> tumBodyElementleri=driver.findElements(By.xpath("//div[@class='rt-tr-group']//div[@class='rt-td']"));
-        siraNo=1;
-        for (WebElement each:tumBodyElementleri) {
-            System.out.println(siraNo+"-->"+each.getText());
-            siraNo++;
-        }
-        System.out.println(tumBodyElementleri.size());
-        // 5. Tabloda kac tane bos olmayan cell (data) oldugunu yazdirin
-        List<WebElement> tumDataElementi=driver.findElements(By.xpath("//div[@class='rt-tr-group']//div[@class='rt-td']"));
-        siraNo=1;
-        for (WebElement each:tumDataElementi) {
-            if (!each.getText().equals(" ")){
-                System.out.println(siraNo+"-->"+each.getText());
-                siraNo++;
+        List<WebElement> dataList = driver.findElements(By.xpath("//div[@class='rt-td']"));
+        System.out.println("\n======DATA=======\n");
+        index=1;
+        for (WebElement each:dataList) {
+            if (!each.getText().isBlank()) {
+                System.out.println(index + " - " + each.getText());
+                index++;
             }
         }
-        // 6. Tablodaki satir sayisini yazdirin
-        List<WebElement> satirSayisi=driver.findElements(By.xpath("//div[@class='rt-tr-group']"));
-        System.out.println("Satır sayısı : "+satirSayisi.size());
-        // 7. Tablodaki sutun sayisini yazdirin
-        List<WebElement> sutunSayisi=driver.findElements(By.xpath("(//div[@class='rt-tr-group'])[1]//div[@class='rt-td']"));
-        System.out.println("Sütun sayısı : "+sutunSayisi.size());
-        // 8. Tablodaki 3.kolonu yazdirin
-        for (int i = 1; i <10 ; i++) {
-            System.out.println(getData(i,3));
+
+        // 5. Tabloda kac tane bos olmayan cell (data) oldugunu yazdirin
+
+        int count=0;
+        for (WebElement each:dataList) {
+            if (each.getText().isBlank()) {
+                count++;
+            }
         }
+
+        System.out.println("\nBoş data kutusu sayisi: "+count);
+
+        // 6. Tablodaki satir sayisini yazdirin
+        List<WebElement> satirList = driver.findElements(By.xpath("//div[@class='rt-tr-group']"));
+        System.out.println("\nSatir sayisi: "+satirList.size());
+
+        // 7. Tablodaki sutun sayisini yazdirin
+        System.out.println("Sutun sayisi: "+headersList.size());
+
+        // 8. Tablodaki 3.kolonu yazdirin
+        List<WebElement> ucuncuKolonList = driver.findElements(By.xpath("//div[@class='rt-td'][3]"));
+        System.out.println("\n======UCUNCU KOLON=======\n");
+        index=1;
+        for (WebElement each:ucuncuKolonList) {
+            if (!each.getText().isBlank()) {
+                System.out.println(index + " - " + each.getText());
+                index++;
+            }
+        }
+
         // 9. Tabloda “First Name” i Kierra olan kisinin Salary’sini yazdirin
-        WebElement kierraSalary= driver.findElement(By.xpath("((//div[@class='rt-tr -odd'])[2]//div[@class='rt-td'])[5]"));
-        System.out.println("Kierra'nın maaşı : "+kierraSalary.getText());
+        System.out.println("\nKierra salary: "+getData(3, 5));
+
         //10. Page sayfasinda bir method olusturun, Test sayfasindan satir ve sutun sayisini girdigimde bana datayi yazdirsin
-        System.out.println(getData(3,5));
+
     }
     public String getData(int satirNo,int sutunNo){
         String dataPath="((//div[@class='rt-tr-group'])["+satirNo+"]//div[@class='rt-td'])["+sutunNo+"]";

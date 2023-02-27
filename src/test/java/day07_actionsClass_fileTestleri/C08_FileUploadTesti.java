@@ -34,9 +34,9 @@ public class C08_FileUploadTesti extends TestBase {
         //Upload butonuna basalim.
         driver.findElement(By.id("file-submit")).click();
         //“File Uploaded!” textinin goruntulendigini test edelim.
-        WebElement expectedText = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
+        WebElement expectedText = driver.findElement(By.xpath("//div//h3"));
 
         Assert.assertTrue(expectedText.isDisplayed());
-        bekle(2);
+        bekle(2 );
     }
 }
