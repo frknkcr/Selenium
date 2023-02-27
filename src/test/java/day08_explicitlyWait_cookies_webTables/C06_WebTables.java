@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class C06_WebTables extends TestBase {
